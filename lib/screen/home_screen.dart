@@ -1,4 +1,5 @@
 import 'package:codefactory_flutter_riverpod/layout/default_layout.dart';
+import 'package:codefactory_flutter_riverpod/screen/family_modifer_provider_screen.dart';
 import 'package:codefactory_flutter_riverpod/screen/future_provider_screen.dart';
 import 'package:codefactory_flutter_riverpod/screen/state_notifier_provider_screen.dart';
 import 'package:codefactory_flutter_riverpod/screen/state_provider_screen.dart';
@@ -45,6 +46,14 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             child: Text('StreamProviderScreen'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => FamilyModifierScreen(),
+              ),
+            ),
+            child: Text('FamilyModifierScreen'),
           ),
         ],
       ),
