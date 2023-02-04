@@ -27,3 +27,19 @@ Future<String> greeting3(Greeting3Ref ref) async {
 int multiple(MultipleRef ref, {required int number1, required int number2}) {
   return number1 * number2;
 }
+
+@riverpod
+class NumberStateNotifier extends _$NumberStateNotifier {
+  @override
+  int build() {
+    return 0;
+  }
+
+  increment() {
+    state++;
+  }
+
+  decrement() {
+    state--;
+  }
+}

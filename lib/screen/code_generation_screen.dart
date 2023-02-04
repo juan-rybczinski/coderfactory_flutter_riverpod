@@ -15,6 +15,7 @@ class CodeGenerationScreen extends ConsumerWidget {
       number1: 10,
       number2: 20,
     ));
+    final number = ref.watch(numberStateNotifierProvider);
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
@@ -48,6 +49,21 @@ class CodeGenerationScreen extends ConsumerWidget {
             ),
           ),
           Text('State: $multiple'),
+          Text('Number: $number'),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: () =>
+                    ref.read(numberStateNotifierProvider.notifier).increment(),
+                child: Text('Increment'),
+              ),
+              ElevatedButton(
+                onPressed: () =>
+                    ref.read(numberStateNotifierProvider.notifier).decrement(),
+                child: Text('Decrement'),
+              ),
+            ],
+          )
         ],
       ),
     );

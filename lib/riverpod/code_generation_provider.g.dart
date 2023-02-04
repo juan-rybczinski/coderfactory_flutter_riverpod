@@ -29,6 +29,25 @@ class _SystemHash {
   }
 }
 
+String _$NumberStateNotifierHash() =>
+    r'a74957697328d6a77ef7dd1f14d24812be665b8d';
+
+/// See also [NumberStateNotifier].
+final numberStateNotifierProvider =
+    AutoDisposeNotifierProvider<NumberStateNotifier, int>(
+  NumberStateNotifier.new,
+  name: r'numberStateNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$NumberStateNotifierHash,
+);
+typedef NumberStateNotifierRef = AutoDisposeNotifierProviderRef<int>;
+
+abstract class _$NumberStateNotifier extends AutoDisposeNotifier<int> {
+  @override
+  int build();
+}
+
 String _$greetingHash() => r'4f40131d8c5361fe85cc6e2bffb14c8048c5b02d';
 
 /// See also [greeting].
