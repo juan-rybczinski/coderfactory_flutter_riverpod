@@ -22,3 +22,8 @@ Future<String> greeting3(Greeting3Ref ref) async {
 
   return 'Hello, Rybczinski!';
 }
+
+@riverpod
+int multiple(MultipleRef ref, {required int number1, required int number2}) {
+  return number1 * number2;
+}

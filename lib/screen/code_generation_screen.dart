@@ -11,6 +11,10 @@ class CodeGenerationScreen extends ConsumerWidget {
     final greeting = ref.watch(greetingProvider);
     final greeting2 = ref.watch(greeting2Provider);
     final greeting3 = ref.watch(greeting3Provider);
+    final multiple = ref.watch(multipleProvider(
+      number1: 10,
+      number2: 20,
+    ));
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
@@ -42,7 +46,8 @@ class CodeGenerationScreen extends ConsumerWidget {
             loading: () => const Center(
               child: CircularProgressIndicator(),
             ),
-          )
+          ),
+          Text('State: $multiple'),
         ],
       ),
     );

@@ -59,3 +59,81 @@ final greeting3Provider = FutureProvider<String>(
       const bool.fromEnvironment('dart.vm.product') ? null : _$greeting3Hash,
 );
 typedef Greeting3Ref = FutureProviderRef<String>;
+String _$multipleHash() => r'ca9bea088167afabecf19e4c8ad59e6e556170d7';
+
+/// See also [multiple].
+class MultipleProvider extends AutoDisposeProvider<int> {
+  MultipleProvider({
+    required this.number1,
+    required this.number2,
+  }) : super(
+          (ref) => multiple(
+            ref,
+            number1: number1,
+            number2: number2,
+          ),
+          from: multipleProvider,
+          name: r'multipleProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$multipleHash,
+        );
+
+  final int number1;
+  final int number2;
+
+  @override
+  bool operator ==(Object other) {
+    return other is MultipleProvider &&
+        other.number1 == number1 &&
+        other.number2 == number2;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, number1.hashCode);
+    hash = _SystemHash.combine(hash, number2.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef MultipleRef = AutoDisposeProviderRef<int>;
+
+/// See also [multiple].
+final multipleProvider = MultipleFamily();
+
+class MultipleFamily extends Family<int> {
+  MultipleFamily();
+
+  MultipleProvider call({
+    required int number1,
+    required int number2,
+  }) {
+    return MultipleProvider(
+      number1: number1,
+      number2: number2,
+    );
+  }
+
+  @override
+  AutoDisposeProvider<int> getProviderOverride(
+    covariant MultipleProvider provider,
+  ) {
+    return call(
+      number1: provider.number1,
+      number2: provider.number2,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'multipleProvider';
+}
