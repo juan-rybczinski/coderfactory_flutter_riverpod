@@ -9,12 +9,40 @@ class CodeGenerationScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final greeting = ref.watch(greetingProvider);
+    final greeting2 = ref.watch(greeting2Provider);
+    final greeting3 = ref.watch(greeting3Provider);
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
       body: Column(
         children: [
-          Text('State: $greeting')
+          Text('State: $greeting'),
+          greeting2.when(
+            data: (data) => Text(
+              data.toString(),
+              textAlign: TextAlign.center,
+            ),
+            error: (err, stack) => Text(
+              'Error: $err',
+              textAlign: TextAlign.center,
+            ),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          greeting3.when(
+            data: (data) => Text(
+              data.toString(),
+              textAlign: TextAlign.center,
+            ),
+            error: (err, stack) => Text(
+              'Error: $err',
+              textAlign: TextAlign.center,
+            ),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
         ],
       ),
     );

@@ -39,3 +39,23 @@ final greetingProvider = AutoDisposeProvider<String>(
       const bool.fromEnvironment('dart.vm.product') ? null : _$greetingHash,
 );
 typedef GreetingRef = AutoDisposeProviderRef<String>;
+String _$greeting2Hash() => r'cfd2d2d115b6c1a1e93eebc84d6142a38e37e3cd';
+
+/// See also [greeting2].
+final greeting2Provider = AutoDisposeFutureProvider<String>(
+  greeting2,
+  name: r'greeting2Provider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$greeting2Hash,
+);
+typedef Greeting2Ref = AutoDisposeFutureProviderRef<String>;
+String _$greeting3Hash() => r'c13ff21cfec2524b0ff8e476986191b5c4b0c21c';
+
+/// See also [greeting3].
+final greeting3Provider = FutureProvider<String>(
+  greeting3,
+  name: r'greeting3Provider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$greeting3Hash,
+);
+typedef Greeting3Ref = FutureProviderRef<String>;
