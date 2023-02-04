@@ -8,6 +8,8 @@ class CodeGenerationScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('build');
+
     final greeting = ref.watch(greetingProvider);
     final greeting2 = ref.watch(greeting2Provider);
     final greeting3 = ref.watch(greeting3Provider);
@@ -15,7 +17,6 @@ class CodeGenerationScreen extends ConsumerWidget {
       number1: 10,
       number2: 20,
     ));
-    final number = ref.watch(numberStateNotifierProvider);
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
@@ -49,7 +50,21 @@ class CodeGenerationScreen extends ConsumerWidget {
             ),
           ),
           Text('State: $multiple'),
-          Text('Number: $number'),
+          Consumer(
+            builder: (context, ref, child) {
+              print('Consumer build');
+
+              final number = ref.watch(numberStateNotifierProvider);
+
+              return Row(
+                children: [
+                  Text('Number: $number'),
+                  if (child != null) child,
+                ],
+              );
+            },
+            child: Text('Child'),
+          ),
           Row(
             children: [
               ElevatedButton(
@@ -63,8 +78,7 @@ class CodeGenerationScreen extends ConsumerWidget {
                 child: Text('Decrement'),
               ),
               ElevatedButton(
-                onPressed: () =>
-                    ref.invalidate(numberStateNotifierProvider),
+                onPressed: () => ref.invalidate(numberStateNotifierProvider),
                 child: Text('Invalidate'),
               ),
             ],
