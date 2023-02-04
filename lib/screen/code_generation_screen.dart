@@ -62,6 +62,11 @@ class CodeGenerationScreen extends ConsumerWidget {
                     ref.read(numberStateNotifierProvider.notifier).decrement(),
                 child: Text('Decrement'),
               ),
+              ElevatedButton(
+                onPressed: () =>
+                    ref.invalidate(numberStateNotifierProvider),
+                child: Text('Invalidate'),
+              ),
             ],
           )
         ],
